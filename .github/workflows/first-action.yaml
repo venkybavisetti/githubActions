@@ -1,1 +1,13 @@
 name: First workFlow
+on: [push]
+
+jobs:
+  first-test:
+    runs-on: macos-latest
+    steps: 
+      - name: echo a string
+        run: echo "Hello world"
+      - name: multiline
+        run: |
+          node -v
+          npm -v
