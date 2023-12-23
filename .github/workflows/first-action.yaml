@@ -18,7 +18,7 @@ jobs:
         run: sw_vers
   depend-job:
     runs-on: macos-latest
-    needs: ['first-test']
+    needs: ['first-test', 'parrallel-job']
     steps:
       - name: echo string
         run: echo $?
