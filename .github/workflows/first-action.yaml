@@ -12,7 +12,7 @@ jobs:
           node -v
           npm -v
   parrallel-job:
-    runs-on: macos-latesh
+    runs-on: macos-latest
     steps:
       - name: view system versions
         run: sw_vers
