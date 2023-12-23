@@ -4,7 +4,7 @@ on: [push]
 jobs:
   first-test:
     runs-on: macos-latest
-    steps: 
+    steps:
       - name: echo a string
         run: echo "Hello world"
       - name: multiline
@@ -16,3 +16,9 @@ jobs:
     steps:
       - name: view system versions
         run: sw_vers
+  depend-job:
+    runs-on: macos-latest
+    needs: ['first-test']
+    steps:
+      - name: echo string
+        run: echo $?
