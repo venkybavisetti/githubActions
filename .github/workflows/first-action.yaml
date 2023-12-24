@@ -1,5 +1,5 @@
 name: Workflow Commands
-on: [push]
+on: workflow_dispatch
 
 jobs:
   testing-wf-commands:
