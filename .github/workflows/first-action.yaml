@@ -18,7 +18,7 @@ jobs:
         run: sw_vers
   depend-job:
     runs-on: macos-latest
-    needs: ['first-test', 'parrallel-job']
+    needs: ['first-test']
     steps:
       - name: echo string
-        run: echo $?
+        run: echo "::debug::Set the Octocat variable"
