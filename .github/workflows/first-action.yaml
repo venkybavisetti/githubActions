@@ -1,24 +1,26 @@
-name: First workFlow
+name: Workflow Commands
 on: [push]
 
 jobs:
-  first-test:
-    runs-on: macos-latest
+  testing-wf-commands:
+    runs-on: ubuntu-latest
     steps:
-      - name: echo a string
-        run: echo "Hello world"
-      - name: multiline
+      - name: Setting an error message
+        run: echo "::error::Missing semicolon"
+      - name: Setting an error message with params
+        run: echo "::error title=Error title,file=app.js,line=2,endLine=3,col=5,endColumn=7::Missing Semicolon"
+      - name: Setting a debug message with params
+        run: echo "::debug title=Debug title,file=app.js,line=2,endLine=3,col=5,endColumn=7::Missing Semicolon"
+      - name: Setting an warning message with params
+        run: echo "::warning title=Warning title,file=app.js,line=2,endLine=3,col=5,endColumn=7::Missing Semicolon"
+      - name: Setting an notice message with params
+        run: echo "::notice title=Notice title,file=app.js,line=2,endLine=3,col=5,endColumn=7::Missing Semicolon"
+      - name: Group of logs
         run: |
-          node -v
-          npm -v
-  parrallel-job:
-    runs-on: macos-latest
-    steps:
-      - name: view system versions
-        run: sw_vers
-  depend-job:
-    runs-on: macos-latest
-    needs: ['first-test']
-    steps:
-      - name: echo string
-        run: echo "::debug::Set the Octocat variable"
+          echo "::group::My group title"
+          echo "Inside group"
+          echo "::endgroup::"
+      - name: Masking a value
+        run: echo "::add-mask::Secret String"
+      - name: Echo a secret
+        run: echo "Secret String"
