@@ -65,13 +65,13 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: dist-files
+          name: dist
           path: dist
   deploy:
     needs: build
     uses: ./.github/workflows/reusable.yml
     with:
-      artifact-name: dist-files
+      artifact-name: dist
   report:
     needs: [lint, deploy]
     if: failure()
