@@ -1,0 +1,21 @@
+name: matrix yml
+on: push
+jobs:
+  build:
+    continue-on-error: true
+    strategy:
+      matrix:
+        node-version: [12, 13, 14]
+        operating-system: [ubuntu-latest, windows-latest]
+    runs-on: ${{matrix.operating-system}}
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: install node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{matrix.node-version}}
+      - name: install dependencies
+        run: npm ci
+      - name: build project
+        run: npm run build
