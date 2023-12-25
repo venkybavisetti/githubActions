@@ -7,10 +7,10 @@ jobs:
       matrix:
         node-version: [12, 13, 14] # we can define in a array
         operating-system: [ubuntu-latest, windows-latest]
-        include:
-          - node-version: 12
+        include: # to include particular conbination extra
+          - node-version: 18
             operating-system: windows-latest
-        exclude:
+        exclude: # to exclude particular conbination from matrix
           - node-version: 13
             operating-system: ubuntu-latest
     runs-on: ${{matrix.operating-system}} # matrix is context
