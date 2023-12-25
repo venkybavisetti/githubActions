@@ -10,8 +10,14 @@ on:
     secrets:
       file-name: 
         required: true
+    outputs:
+      result:
+        description: result of workflow
+        value: ${{jobs.deploy.outputs.outcome}}
 jobs:
   deploy:
+    outputs:
+      outcome: ${{steps.set-result.outputs.set-result}}
     runs-on: ubuntu-latest
     steps:
       - name: Get artifacts
@@ -20,5 +26,8 @@ jobs:
           name: ${{inputs.artifact-name}}
       - name: show secrets
         run: echo ${{secrets.file-name}}
+      - name: set output
+        id: set-result
+        run: echo "step-result=success" >> $GITHUB_OUTPUT
       - name: Deploy
         run: ls -al

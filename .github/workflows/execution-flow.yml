@@ -74,6 +74,12 @@ jobs:
       artifact-name: dist-files
     secrets:
       file-name: ${{secrets.GITHUB_TOKEN}}
+  print_deploy_output:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: show deploy status
+        run: echo ${{needs.deploy.outputs.result}}
   report:
     needs: [lint, deploy]
     if: failure()
