@@ -2,12 +2,18 @@ name: matrix yml
 on: push
 jobs:
   build:
-    continue-on-error: true
+    continue-on-error: true # runs all jobs even one job fails
     strategy:
       matrix:
-        node-version: [12, 13, 14]
+        node-version: [12, 13, 14] # we can define in a array
         operating-system: [ubuntu-latest, windows-latest]
-    runs-on: ${{matrix.operating-system}}
+        include:
+          - node-version: 12
+            operating-system: windows-latest
+        exclude:
+          - node-version: 13
+            operating-system: ubuntu-latest
+    runs-on: ${{matrix.operating-system}} # matrix is context
     steps:
       - name: Get code
         uses: actions/checkout@v4
