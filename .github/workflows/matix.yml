@@ -1,5 +1,5 @@
 name: matrix yml
-on: push
+on: workflow_dispatch
 jobs:
   build:
     continue-on-error: true # runs all jobs even one job fails
