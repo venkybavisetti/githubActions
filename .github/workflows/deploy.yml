@@ -30,6 +30,7 @@ jobs:
       - name: Output information
         run: |
           echo "MONGODB_USERNAME: $MONGODB_USERNAME"
+          echo ${{github}}
   deploy:
     needs: test
     runs-on: ubuntu-latest
